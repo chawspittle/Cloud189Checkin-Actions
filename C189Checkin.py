@@ -28,6 +28,7 @@ def main():
         "Host" : "m.cloud.189.cn",
         "Accept-Encoding" : "gzip, deflate",
     }
+    # 签到
     response = s.get(surl,headers=headers)
     netdiskBonus = response.json()['netdiskBonus']
     if(response.json()['isSign'] == "false"):
@@ -40,8 +41,9 @@ def main():
         "Host" : "m.cloud.189.cn",
         "Accept-Encoding" : "gzip, deflate",
     }
-    #第一次抽奖
+    # 第一次抽奖
     response = s.get(url,headers=headers)
+    print(f"url响应信息：", response.text)
     if ("errorCode" in response.text):
         if(response.json()['errorCode'] == "User_Not_Chance"):
             print("抽奖次数不足")
