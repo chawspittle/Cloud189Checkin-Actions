@@ -1,4 +1,4 @@
-import requests, time, re, rsa, json, base64
+import requests, time, re, rsa, json, base64, os
 from urllib import parse
 
 s = requests.Session()
