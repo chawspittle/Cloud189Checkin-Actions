@@ -44,7 +44,7 @@ def main():
     }
     # 第一次抽奖
     response = s.get(url,headers=headers)
-    print(f"url响应信息：", response)
+    print(f"url响应信息：", response.json())
     if ("errorCode" in response.text):
         if(response.json()['errorCode'] == "User_Not_Chance"):
             print("抽奖次数不足")
@@ -63,7 +63,7 @@ def main():
         print(f"抽奖获得{description}")
     #第二次抽奖
     response = s.get(url2,headers=headers)
-    print(f"url2响应信息：", response)
+    print(f"url2响应信息：", response.json())
     if ("errorCode" in response.text):
         if(response.json()['errorCode'] == "User_Not_Chance"):
             print("抽奖次数不足")
