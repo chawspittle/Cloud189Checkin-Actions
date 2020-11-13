@@ -8,7 +8,7 @@ password = ""
 
 
 #Server酱报错推送提醒，需要填下下面的key，官网：https://sc.ftqq.com/3.version
-SCKEY = ""
+#SCKEY = ""
 #推送url
 scurl = f"https://sc.ftqq.com/{SCKEY}.send"
 
@@ -43,7 +43,7 @@ def main():
     }
     # 第一次抽奖
     response = s.get(url,headers=headers)
-    print(f"url响应信息：", response.text)
+    print(f"url响应信息：", response)
     if ("errorCode" in response.text):
         if(response.json()['errorCode'] == "User_Not_Chance"):
             print("抽奖次数不足")
@@ -55,12 +55,14 @@ def main():
                     "desp" : response.text
                     }
                 sc = requests.post(scurl, data=data)
+    elif (response.text is None or response.text.strip()==''): 
+        print(f"url响应的response.text为空")
     else:
         description = response.json()['description']
         print(f"抽奖获得{description}")
     #第二次抽奖
     response = s.get(url2,headers=headers)
-    print(f"url2响应信息：", response.text)
+    print(f"url2响应信息：", response)
     if ("errorCode" in response.text):
         if(response.json()['errorCode'] == "User_Not_Chance"):
             print("抽奖次数不足")
@@ -72,6 +74,8 @@ def main():
                     "desp" : response.text
                     }
                 sc = requests.post(scurl, data=data)
+    elif (response.text is None or response.text.strip()==''): 
+        print(f"url2响应的response.text为空")
     else:
         description = response.json()['description']
         print(f"抽奖获得{description}")
