@@ -58,6 +58,8 @@ def main():
                 sc = requests.post(scurl, data=data)
     elif (response.text is None or response.text.strip()==''): 
         print(f"url响应的response.text为空")
+    elif (response.json() is None):
+        print(f"url响应的response.json()为空")
     else:
         description = response.json()['description']
         print(f"抽奖获得{description}")
@@ -77,6 +79,8 @@ def main():
                 sc = requests.post(scurl, data=data)
     elif (response.text is None or response.text.strip()==''): 
         print(f"url2响应的response.text为空")
+    elif (response.json() is None):
+        print(f"url2响应的response.json()为空")
     else:
         description = response.json()['description']
         print(f"抽奖获得{description}")
